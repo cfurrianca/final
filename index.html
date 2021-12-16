@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- COMMON TAGS -->
+        <title>El danzarín del bosque</title>
+        <!-- Search Engine -->
+        <meta name="description" content="Infografía sobre el gibón de manos blancas" />
+        <meta name="image" content="https://gibon-de-manos-blancas.github.io/final/archivos/meta.jpg" />
+        <!-- Schema.org for Google -->
+        <meta itemprop="name" content="Volando por la selva" />
+        <meta itemprop="description" content="Infografía sobre el gibón de manos blancas" />
+        <meta itemprop="image" content="https://gibon-de-manos-blancas.github.io/final/archivos/meta.jpg" />
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Volando por la selva" />
+        <meta name="twitter:description" content="Infografía sobre el gibón de manos blancas" />
+        <meta name="twitter:image:src" content="https://gibon-de-manos-blancas.github.io/final/archivos/meta.jpg" />
+        <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+        <meta name="og:title" content="Volando por la selva" />
+        <meta name="og:description" content="Infografía sobre el gibón de manos blancas" />
+        <meta name="og:image" content="https://gibon-de-manos-blancas.github.io/final/archivos/meta.jpg" />
+        <meta name="og:url" content="https://gibon-de-manos-blancas.github.io/final/" />
+        <meta name="og:site_name" content="Volando por la selva" />
+        <meta name="og:locale" content="es_CL" />
+        <meta name="og:type" content="website" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+        <style>
+            /* PODEMOS IMPORTAR, DE UN VIAJE, DOS FUENTES Y SUS RESPECTIVOS PESOS
+         IMPORTANTE ANOTAR QUÉ PESO SE VA A UTILIZAR, SE DEBEN IMPORTAR LOS ESTILOS (ITÁLICA, NEGRITA, ETC)
+         GOOGLE FONTS*/
+            @import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;1,400&display=swap");
+            /*
+         Vamos a contradecir a Bootstrap, partiendo con un par de variables
+         1) La que define la familia tipográfica que se aplica por defecto
+         2) La que define un color que podríamos reutilizar
+         thin ---- 100
+         light ---- 200
+         book ---- 300
+         normal ---- 400
+         semibold ---- 600
+         bold ---- 700
+         heavy ---- 900
+         */
+            :root {
+                --bs-body-font-family: "Roboto", sans-serif;
+                --bs-primary: #db9f00 !important; /*cambiamos el color (pelotas, vínculos, barra nombre técnico) - color original #e65100*/
+            }
+            a {
+                color: #222; /*colores simplificados #222222 otra forma de escribir los colores rgb(255,255,255) o rgba (255,255,255,0.5) donde a es alpha, simil a la opacidad que va desde 0 a 1*/
+                text-decoration: underline;
+                transition: color ease 0.5s;
+            }
+            a:hover {
+                color: var(--bs-primary);
+                text-decoration: none;
+                transition: color ease 0.5s;
+            }
+
+            .btn-outline-primary {
+                color: var(--bs-primary) !important;
+                border-color: var(--bs-primary) !important;
+            }
+            .btn-outline-primary:hover {
+                color: #fff !important;
+                background-color: var(--bs-primary) !important;
+                border-color: var(--bs-primary) !important;
+            }
+
+            .btn-check:checked + .btn-outline-primary,
+            .btn-check:active + .btn-outline-primary,
+            .btn-outline-primary:active,
+            .btn-outline-primary.active,
+            .btn-outline-primary.dropdown-toggle.show {
+                color: #fff !important;
+                background-color: var(--bs-primary) !important;
+                border-color: var(--bs-primary) !important;
+            }
+
+            body {
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+            /* vamos a ajustar los pesos de algunos títulos a lo que dispone la fuente  */
+            h1,
+            h2,
+            h3,
+            h4 {
+                font-weight: 400;
+                font-family: "PT Serif", serif;
+            }
+            /* vamos a ajustar los pesos de otros títulos y negrita a lo que dispone la fuente  */
+            h5,
+            h6 {
+                font-weight: 700;
+                font-family: "PT Serif", serif;
+            }
+            /* AQUÍ HAGO UN AJUSTE IDIOMÁTICO:  EL GRINGO ENFATIZA CON ITÁLICA. EN CASTELLANO NO LO HACEMOS ASÍ, ENFATIZAMOS CON PESO DE FUENTE, MANTENIENDO UN ESTILO NORMAL */
+            strong,
+            b,
+            em {
+                /*b = bold, em = emphasis que en inglés suele usar itálica, entonces lo cambio a normal*/
+                font-weight: 500;
+                font-style: normal;
+            }
+            /* definiré un tamaño del título de primer nivel (h1) que se ajuste según el viewport width --> https://www.yunbitsoftware.com/blog/2017/06/22/viewport-units-css-que-es/ */
+            h1 {
+                font-size: calc(2rem + 2vw); /*Gibón de manos blancas necesita que sea 2vw, el original era 3*/
+            }
+            /* repetiré el truco anterior con el título de segundo nivel (h2), que, a diferencia del anterior, puedo ocupar varias veces en la misma página */
+            h2 {
+                font-size: calc(0.75rem + 1vw);
+            }
+            /* usaré el ">" entre el título se segundo nive (h2) y el lapso en la misma línea (span) --> https://techbrij.com/css-selector-adjacent-child-sibling */
+            h2 > span {
+                background: var(--bs-primary);
+                color: #fff;
+            }
+            /* sigamos con el título de tercer nivel (h3) */
+            h3 {
+                font-size: calc(1.5rem + 1vw);
+            }
+            span[data-bs-toggle="popover"] {
+                cursor: pointer;
+            }
+
+            header {
+                background: url("archivos/danzarin_dosel.png");
+                background-repeat: no-repeat;
+                background-position: center top;
+                background-size: 1024px auto;
+                padding-top: 300px;
+            }
+            aside {
+                background: linear-gradient(#fff, #e7e8e9);
+            }
+
+            @keyframes corre {
+                0% {
+                    left: 0;
+                    position: absolute;
+                }
+                100% {
+                    left: calc(100% - 100px);
+                    position: absolute;
+                }
+            }
+
+            #carrera {
+                width: 100vw;
+                max-width: 100vw;
+                overflow-x: hidden;
+                background: #fafafa;
+                margin: 0;
+                padding: 0;
+            }
+            #carrera div {
+                height: 50px;
+                width: 100vw;
+                max-width: 100vw;
+                position: relative;
+                overflow: hidden;
+            }
+            #carrera div p {
+                position: absolute;
+                left: 20px;
+                top: 10px;
+                opacity: 0;
+                transition: all ease 0.2s;
+            }
+            #carrera:hover {
+                cursor: pointer;
+            }
+            #carrera:hover div p {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                opacity: 1;
+                transition: all ease 2s;
+            }
+            #carrera:hover div img#chita {
+                animation: corre 1.2s normal forwards;
+            }
+
+            #carrera:hover div img#caballo {
+                animation: corre 1.6s normal forwards;
+            }
+
+            #carrera:hover div img#gibon {
+                animation: corre 2.6s normal forwards;
+            }
+
+            #carrera:hover div img#rinoceronte {
+                animation: corre 2.9s normal forwards;
+            }
+
+            #carrera:hover div img#gato {
+                animation: corre 3s normal forwards;
+            }
+
+            #carrera:hover div img#humano {
+                animation: corre 3.3s normal forwards;
+            }
+            #carrera:hover div img#raton {
+                animation: corre 12s normal forwards;
+            }
+        </style>
+        <!--ESTO SERVIRÁ PARA COMPARAR UN ANTES Y UN DESPUÉS-->
+        <link href="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!--ESTE ES EL ENCABEZADO-->
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                        <h2 class="text-center fst-italic mt-5"><span class="px-2 py-1">Hylobates lar</span></h2>
+                        <h1 class="text-center py-3">Gibón de manos blancas</h1>
+                        <!--desde acá la edición de nombres-->
+                        <h6 class="text-center mb-5 text-muted">
+                            Por
+                            <span
+                                data-bs-container="body"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover focus"
+                                data-bs-placement="top"
+                                data-bs-content="<div class='text-center'><img src='archivos/cfurrianca.jpg' class='w-50 mb-2 rounded-circle'><br>Cristina Furrianca<br><span class='small text-muted'>Diseñadora</span></div>"
+                            >
+                                Cristina Furrianca
+                            </span>
+                            ,
+                            <span
+                                data-bs-container="body"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover focus"
+                                data-bs-placement="top"
+                                data-bs-content="<div class='text-center'><img src='https://randomuser.me/api/portraits/men/14.jpg' class='w-50 mb-2 rounded-circle'><br>Gabriel Moreno<br><span class='small text-muted'>Diseñador</span></div>"
+                            >
+                                Gabriel Moreno
+                            </span>
+                            y
+                            <span
+                                data-bs-container="body"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover focus"
+                                data-bs-placement="top"
+                                data-bs-content="<div class='text-center'><img src='https://randomuser.me/api/portraits/men/16.jpg' class='w-50 mb-2 rounded-circle'><br>Ramón PdeA<br><span class='small text-muted'>Ingeniero Civil</span></div>"
+                            >
+                                Ramón PdeA
+                            </span>
+                        </h6>
+                        <!--hasta aquí la edición de nombres-->
+                        <p class="lead">
+                            <em>Endémico de las selvas del sudeste asiático</em>, este mamífero acrobático, nos muestra su agilidad y velocidad, al desplazarse como un danzarín en medio del dosel árboreo de la selva tropical.
+                        </p>
+                        <p>
+                            <em>Este primate de la familia de los hilobátidos</em>, se encuentra en peligro de extinción según la clasificación elaborada por la Unión Internacional para la Conservación de la Naturaleza, que compila la Lista Roja de especies amenazadas: En peligro crítico (CR); En peligro (EN) y Vulnerables (VU).
+                        </p>
+                        <div class="row">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" class="col-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 my-3 mx-auto">
+                                <style type="text/css">
+                                    line,
+                                    path {
+                                        fill: none;
+                                        stroke: #777777;
+                                        stroke-linecap: round;
+                                    }
+                                    .blanco {
+                                        fill: #ffffff;
+                                        font-size: 45px;
+                                    }
+                                    .gris {
+                                        fill: #777777;
+                                        font-size: 35px;
+                                    }
+                                    .no {
+                                        fill: #999999;
+                                    }
+                                    .si {
+                                        fill: var(--bs-primary);
+                                    }
+                                </style>
+                                <g id="ex">
+                                    <circle class="no" cx="82.1" cy="250" r="45" />
+                                    <text transform="matrix(1 0 0 1 54 265)" class="blanco">EX</text>
+                                </g>
+                                <g id="ew">
+                                    <circle class="no" cx="212.6" cy="250" r="45" />
+                                    <text transform="matrix(1 0 0 1 180 265)" class="blanco">EW</text>
+                                </g>
+                                <g id="cr">
+                                    <circle class="no" cx="342.9" cy="250" r="45" />
+                                    <text transform="matrix(1 0 0 1 313 265)" class="blanco">CR</text>
+                                </g>
+                                <g id="en">
+                                    <circle class="si" cx="473.6" cy="250" r="45" />
+                                    <text transform="matrix(1 0 0 1 444 265)" class="blanco">EN</text>
+                                </g>
+                                <g id="vu">
+                                    <circle class="no" cx="603.8" cy="250" r="45" />
+                                    <text transform="matrix(1 0 0 1 574 265)" class="blanco">VU</text>
+                                </g>
+                                <g id="nt">
+                                    <circle class="no" cx="734.1" cy="250" r="45" />
+                                    <text transform="matrix(1 0 0 1 705 265)" class="blanco">NT</text>
+                                </g>
+                                <g id="lc">
+                                    <circle class="no" cx="865.6" cy="250" r="45" />
+                                    <text transform="matrix(1 0 0 1 840 265)" class="blanco">LC</text>
+                                </g>
+                                <g id="datos">
+                                    <text transform="matrix(1 0 0 1 29.8186 54.2935)" class="gris">Extinto</text>
+                                    <text transform="matrix(1 0 0 1 382.5784 54.2935)" class="gris">Amenazado</text>
+                                    <text transform="matrix(1 0 0 1 760.9694 54.2935)" class="gris">Preocupación</text>
+                                    <text transform="matrix(1 0 0 1 812.2867 95.3477)" class="gris">menor</text>
+                                    <text transform="matrix(1 0 0 1 392.5784 340.2935)" class="gris">En peligro</text>
+                                    <line class="st6" x1="865.6" y1="119.4" x2="865.6" y2="162.5" />
+                                    <line class="st6" x1="82.1" y1="77.9" x2="82.1" y2="162.5" />
+                                    <path
+                                        class="st6"
+                                        d="M279.3,162.5v-55.2c0-6,4.8-10.8,10.8-10.8h161.1c4.4,0,7.9-0.3,10.4-0.9c2.6-0.5,5-1.9,7-3.8 c2.6-3.3,4.1-6,4.3-8.6c0.2,2.6,1.7,5.3,4.3,8.6c2.1,2.1,4.4,3.3,7,3.8c2.6,0.5,6.2,0.9,10.4,0.9h163.2c6,0,10.8,4.8,10.8,10.8v55.2"
+                                    />
+                                </g>
+                            </svg>
+                        </div>
+                        <!--Muestra al gibón chico o el grande, pero carga ambos. Falta modificar los datos que se muestran-->
+                        <object data="archivos/gibon-chico.svg" type="image/svg+xml" class="d-md-none my-3" title="gibon chico"></object>
+                        <object data="archivos/gibon-grande.svg" type="image/svg+xml" class="d-none d-md-block my-3" title="gibon grande"></object>
+                        <!--Se muestra o no por una clase de Bootstrap que responde al ancho de pantalla-->
+                        <!--Muestra el gibón chico o el grando, pero carga ambos-->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="pb-5">
+            <section>
+                <!--LA BRAQUIACIÓN-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto my-5">
+                            <h3 class="text-center my-3">Anatomía</h3>
+                            <p>Su anatomía está adaptada a la vida en suspensión y es uno de los dos primates que utiliza esta particular forma de desplazamiento denominada <em>braquiación</em>.</p>
+
+                            <object data="archivos/Gibon_ejercicio_3.svg" type="image/svg+xml" class="d-md-none" title="gibon chico"></object>
+                            <object data="archivos/Gibon_ejercicio_3.svg" type="image/svg+xml" class="d-none d-md-block" title="gibon grande"></object>
+
+                            <p>
+                                La braquiación permite a los gibones desplazarse mediante el balanceo a través de la jungla a una velocidad de hasta <em>56 km/h</em>. Una velocidad mayor a la de un rinoceronte, un gato doméstico, Usain Bolt
+                                (récords mundiales de los 100 y 200 m planos) y un ratón.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--LA CARRERA DE LA BRAQUIACIÓN-->
+                <div id="carrera">
+                    <div class="border-bottom">
+                        <p class="small text-muted">120km/h</p>
+                        <img src="archivos/corre-chita.svg" width="100" height="50" alt="cheetah en velocidad" id="chita" />
+                    </div>
+                    <div class="border-bottom">
+                        <p class="small text-muted">88km/h</p>
+                        <img src="archivos/corre-caballo.svg" width="100" height="50" alt="caballo en velocidad" id="caballo" />
+                    </div>
+                    <div class="border-bottom">
+                        <p class="small text-muted">56km/h</p>
+                        <img src="archivos/corre-gibon.svg" width="100" height="50" alt="gibon en velocidad" id="gibon" />
+                    </div>
+                    <div class="border-bottom">
+                        <p class="small text-muted">50km/h</p>
+                        <img src="archivos/corre-rinoceronte.svg" width="100" height="50" alt="rinoceronte en velocidad" id="rinoceronte" />
+                    </div>
+                    <div class="border-bottom">
+                        <p class="small text-muted">48km/h</p>
+                        <img src="archivos/corre-gato.svg" width="100" height="50" alt="gato en velocidad" id="gato" />
+                    </div>
+                    <div class="border-bottom">
+                        <p class="small text-muted">44km/h</p>
+                        <img src="archivos/corre-humano.svg" width="100" height="50" alt="humano en velocidad" id="humano" />
+                    </div>
+                    <div class="border-bottom">
+                        <p class="small text-muted">12km/h</p>
+                        <img src="archivos/corre-raton.svg" width="100" height="50" alt="raton en velocidad" id="raton" />
+                    </div>
+                </div>
+                <!--LAS ADAPTACIONES PARA LA BRAQUIACIÓN-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto my-5">
+                            <p>
+                                La braquiación, y la velocidad resultante, no serían posible sin el largo de sus brazos, la forma de su cadera y las articulaciones de hombro y muñeca que le permiten un amplio rango de movimiento. Cada una de estas adaptaciones se hacen evidentes cuando comparamos
+                                la estructura ósea de un gibón con la de un humano.
+                            </p>
+                            <div id="yuxtaposicion" class="my-4 w-100">
+                                <img src="archivos/humano-esqueleto.jpg" alt="esqueleto humano" />
+                                <img src="archivos/gibon-esqueleto.jpg" alt="esqueleto gibón" />
+                            </div>
+
+                            <!--AGREGO CRÁNEO EN 3D-->
+                            <div class="ratio ratio-4x3 my-4">
+                                <iframe
+                                    title="White-handed gibbon skull and mandible"
+                                    frameborder="0"
+                                    allowfullscreen
+                                    mozallowfullscreen="true"
+                                    webkitallowfullscreen="true"
+                                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                                    xr-spatial-tracking
+                                    execution-while-out-of-viewport
+                                    execution-while-not-rendered
+                                    web-share
+                                    src="https://sketchfab.com/models/d7b97787ea1a4d8eae8f7ff83370be80/embed"
+                                >
+                                </iframe>
+                            </div>
+                            <p>
+                                El cráneo del gibón de manos blancas tiene algunas características similares al de los humanos y otras distintivas. Identifica algunos elementos comunes o diferentes y revísalos con tu profesor de biología!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--LA PRESENCIA-->
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto my-5">
+                            <h3 class="text-center">Presencia</h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="carruselConMapa" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carruselConMapa" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carruselConMapa" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carruselConMapa" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="1000">
+                            <object class="d-block w-100" data="archivos/territorio_gibon_001.svg" type="image/svg+xml" title="territorio 1"></object>
+                            <div class="carousel-caption">
+                                <h5>Cobertura arborea</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="1000">
+                            <object class="d-block w-100" data="archivos/territorio_gibon_002.svg" type="image/svg+xml" title="territorio 2"></object>
+                            <div class="carousel-caption">
+                                <h5>Deforestación</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="1000">
+                            <object class="d-block w-100" data="archivos/territorio_gibon_003.svg" type="image/svg+xml" title="territorio 3"></object>
+                            <div class="carousel-caption">
+                                <h5>Agricultura</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--Texto Mapas-->
+                        <section class="container lazy" id="texto_mapas">
+                            <div class="row">
+                                <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                    <h3 class="text-center mt-5 mb-3">Amenzas de su hábitat</h3>
+                                    <div class="container-fluid g-0">
+                                       <div class="row g-0">
+                                           <div class="container">
+                                               <div class="row">
+                                                   <div class="col-sm-9 mx-auto">
+                                                       <div class="row pt-3 pb-5">
+                                                           <div class="col-sm-12 py-2"><h5>Simbología de las amenazas de su hábitat natural</h5></div>
+                                                           <div class="col-sm-4 py-2">
+                                                               <dl class="row d-flex align-items-center">
+                                                                   <dt class="col-3"><img src="archivos/iconos_01.png" class="w-100"></dt><dd class="col-9"><small>Bosque Primario</small></dd>
+                                                               </dl>
+                                                           </div>
+                                                           <div class="col-sm-4 py-2">
+                                                               <dl class="row d-flex align-items-center">
+                                                                   <dt class="col-3"><img src="archivos/iconos-02.png" class="w-100"></dt><dd class="col-9"><small>Desforestación</small></dd>
+                                                               </dl>
+                                                           </div>
+                                                           <div class="col-sm-4 py-2">
+                                                               <dl class="row d-flex align-items-center">
+                                                                   <dt class="col-3"><img src="archivos/iconos-03.png" class="w-100"></dt><dd class="col-9"><small>Agricultura</small></dd>
+                                                               </dl>
+                                                           </div>
+                                                           <div class="col-sm-12 py-2">
+                                                               <p>
+                                                                 <em>Su alto grado de adaptación al entorno lo ha vuelto vulnerable.</em> Este ágil y atlético primate, con una dieta basada casi en un 50% de frutas, necesita de grandes extensiones de bosques para alimentarse. Le cuesta caminar en el suelo y no sabe nadar, esto hace que cuando la trama del bosque se romper (causes de agua, desforestación, incendios y uso del suelo por la agricultura), el Gibón queda atrapado.
+                                                               </p>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                        </section>
+
+
+
+            <!--SECCIÓN CARRUSEL-->
+            <section class="container">
+                <div class="row">
+                    <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                        <h4 class="text-center my-5">Diferentes colores en diferentes lugares</h4>
+                        <!--VAMOS A INCLUIR TRES SVG EN UN CARRUSEL-->
+                        <div id="carruselConColores" class="carousel carousel-light slide carousel-fade my-3" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carruselConColores" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carruselConColores" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carruselConColores" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="1000">
+                                    <img src="archivos/colores1.jpg" class="w-100" />
+                                    <div class="carousel-caption text-white">
+                                        <h5>Blanco</h5>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="1000">
+                                    <img src="archivos/colores2.jpg" class="w-100" />
+                                    <div class="carousel-caption text-white">
+                                        <h5>Café</h5>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="1000">
+                                    <img src="archivos/colores3.jpg" class="w-100" />
+                                    <div class="carousel-caption text-white">
+                                        <h5>Negro</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <p>
+                            Este es un lorem ipsum dolor sit amet, consectetur adipiscing elit. Pero no es un loren ipsum para papel, es para pantalla, donde
+                            <a href="https://www.nngroup.com/articles/how-users-read-on-the-web/" target="_blank" title="How Users Read on the Web">es recomendable</a> <em>destacar palabras clave</em>, ofrecer
+                            <a href="https://www.nngroup.com/videos/plain-language-for-experts/" target="_blank" title="Plain Language For Everyone, Even Experts">una idea por párrafo</a> (que sea clara para
+                            <a href="https://www.nngroup.com/videos/biggest-mistake-writing-web/" target="_blank" title="The Biggest Mistake in Writing for the Web">tu público objetivo</a>) y usar el estilo de pirámide invertida (incluyendo
+                            en cada pirámide lo que se acaba de <a href="https://youtu.be/iEB3oILm-qQ?t=2063" target="_blank" title="Charla del Dr. Mario García">mostrar o se mostrará</a> a continuación).
+                        </p>
+
+                        <ul class="nav justify-content-center py-3 my-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="btn rounded-pill btn-outline-primary active m-1" id="tab-matutino" data-bs-toggle="tab" data-bs-target="#matutino" type="button" role="tab" aria-controls="matutino" aria-selected="false">
+                                    Canto matutino
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="btn rounded-pill btn-outline-primary m-1" id="tab-almuerzo" data-bs-toggle="tab" data-bs-target="#almuerzo" type="button" role="tab" aria-controls="almuerzo" aria-selected="true">
+                                    Almuerzo
+                                </button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="btn rounded-pill btn-outline-primary m-1" id="tab-vespertino" data-bs-toggle="tab" data-bs-target="#vespertino" type="button" role="tab" aria-controls="vespertino" aria-selected="true">
+                                    Canto vespertino
+                                </button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active text-center" id="matutino" role="tabpanel" aria-labelledby="matutino">
+                                <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1355731432" title="gibon gritando" class="mx-auto my-3"></iframe>
+                                <p>Canto matutino</p>
+                            </div>
+                            <div class="tab-pane fade text-center" id="almuerzo" role="tabpanel" aria-labelledby="almuerzo">
+                                <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1355731432" title="gibon gritando" class="mx-auto my-3"></iframe>
+                                <p>Almuerzo</p>
+                            </div>
+                            <div class="tab-pane fade text-center" id="vespertino" role="tabpanel" aria-labelledby="vespertino">
+                                <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1355731432" title="gibon gritando" class="mx-auto my-3"></iframe>
+                                <p>Canto vespertino</p>
+                            </div>
+                        </div>
+
+                        <p>
+                            Este es un lorem ipsum dolor sit amet, consectetur adipiscing elit. Pero no es un loren ipsum para papel, es para pantalla, donde
+                            <a href="https://www.nngroup.com/articles/how-users-read-on-the-web/" target="_blank" title="How Users Read on the Web">es recomendable</a> <em>destacar palabras clave</em>, ofrecer
+                            <a href="https://www.nngroup.com/videos/plain-language-for-experts/" target="_blank" title="Plain Language For Everyone, Even Experts">una idea por párrafo</a> (que sea clara para
+                            <a href="https://www.nngroup.com/videos/biggest-mistake-writing-web/" target="_blank" title="The Biggest Mistake in Writing for the Web">tu público objetivo</a>) y usar el estilo de pirámide invertida (incluyendo
+                            en cada pirámide lo que se acaba de <a href="https://youtu.be/iEB3oILm-qQ?t=2063" target="_blank" title="Charla del Dr. Mario García">mostrar o se mostrará</a> a continuación).
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <aside>
+            <div class="container small text-center">
+                <div class="row py-5">
+                    <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                        <h5 class="fs-6 mb-3">Fuentes</h5>
+                        <p>
+                            <a href="https://www.neprimateconservancy.org/white-handed-gibbon.html">New England Primate Conservancy</a> &bull; <a href="https://www.iucnredlist.org/species/10548/17967253">IUCN</a> &bull;
+                            <a href="https://primate.wisc.edu/primate-info-net/pin-factsheets/pin-factsheet-lar-gibbon/">Wisconsin National Primate Research Center</a> &bull; <a href="https://animalia.bio/lar-gibbon">Animalia</a>
+                        </p>
+                        <p><em>Agradecimientos a</em> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fringilla lorem nec tristique varius. Fusce egestas ullamcorper lorem et consequat.</p>
+                        <h5 class="fs-6 mt-5 mb-3">Versión impresa</h5>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalImpreso">
+                            <img loarding="lazy" src="archivos/impresa.jpg" class="w-50 shadow-sm mb-5" alt="infografía impresa pequeña" />
+                        </a>
+                        <div class="modal fade" id="modalImpreso" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-fullscreen">
+                                <img loarding="lazy" src="archivos/impresa.jpg" class="w-100" alt="infografía impresa grande" />
+                            </div>
+                        </div>
+                        <p class="small">
+                            <em><a href="https://www.diplomadodeinfografia.cl/" class="link-dark" target="_blank">Diplomado de Infografía</a> &bull; 2021</em><br />
+                            Escuela de Diseño de la Pontificia Universidad Católica de Chile<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light">
+                <div class="container py-5">
+                    <div class="row">
+                        <h4 class="col-12 mb-4 text-center">También te puede interesar</h4>
+                    </div>
+                    <div class="row g-4" id="colegas"></div>
+                    <script>
+                        const colegas = document.getElementById("colegas");
+                        const datos = [
+                            {
+                                especie: "Gibón de manos blancas",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/gibon.jpg",
+                                descripcion: "el danzarín del bosque.",
+                                url: "https://gibon-de-manos-blancas.github.io/final/",
+                            },
+                            {
+                                especie: "Grulla de cuello blanco",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/grulla.jpg",
+                                descripcion: "un viajera romántica.",
+                                url: "https://grulla-de-cuello-blanco.github.io/final/",
+                            },
+                            {
+                                especie: "Hipopótamo pigmeo",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/hipopotamo.jpg",
+                                descripcion: "un pequeño caballo de río.",
+                                url: "https://hipopotamo-pigmeo.github.io/final/",
+                            },
+                            {
+                                especie: "Panda rojo",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/panda.jpg",
+                                descripcion: "el animal más lindo del mundo.",
+                                url: "https://infografia-panda-rojo.github.io/final/",
+                            },
+                            {
+                                especie: "Lemur de cola anillada",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/lemur.jpg",
+                                descripcion: "el zorrillo de Madagascar.",
+                                url: "https://lemur-cola-anillada.github.io/final/",
+                            },
+                            {
+                                especie: "Orangután de borneo",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/orangutan.jpg",
+                                descripcion: "el hombre del bosque.",
+                                url: "https://orangutan-borneo-uc.github.io/final/",
+                            },
+                            { especie: "Oso malayo", 
+                            imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/oso.jpg", 
+                            descripcion: "el oso más pequeño.", 
+                            url: "https://oso-malayo.github.io/final/" },
+                            {
+                                especie: "Siamang",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/siamang.jpg",
+                                descripcion: "el acróbata de la selva.",
+                                url: "https://siamang-infografia.github.io/final/",
+                            },
+                            {
+                                especie: "Tapir amazónico",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/tapir.jpg",
+                                descripcion: "el jardinero de la selva.",
+                                url: "https://tapir-amazonico.github.io/final/",
+                            },
+                            {
+                                especie: "Tigre de bengala",
+                                imagen: "https://raw.githubusercontent.com/profesorfaco/infografia/main/thumbnails/tigre.jpg",
+                                descripcion: "el felino más grande del mundo.",
+                                url: "https://tigre-de-bengala.github.io/final/",
+                            },
+                        ];
+                        datos.forEach((d) => {
+                            if (d.especie != "Gibón de manos blancas") {
+                                colegas.innerHTML +=
+                                    '<div class="col-12 col-md-6 col-lg-4"><div class="row shadow-sm g-0 small align-items-center bg-white"><div class="col-3"><img loading="lazy" src="' +
+                                    d.imagen +
+                                    '" alt="' +
+                                    d.especie +
+                                    '" class="w-100"></div><div class="col-9 p-2"><em>' +
+                                    d.especie +
+                                    '</em>, <a href="' +
+                                    d.url +
+                                    '">' +
+                                    d.descripcion +
+                                    "</a></div></div></div>";
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </aside>
+        <!--ESTE ES EL PIE DE PÁGINA-->
+        <footer class="bg-dark text-white-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col py-3">
+                        <p class="text-center small">
+                            Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="link-light">Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--BOOTSTRAP OFRECE SU PROPIA BIBLIOTECA DE JAVASCRIPT-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <!--CON ESTE CÓDIGO DE ACTIVA EL POPOVER SOBRE SU NOMBRE-->
+        <script>
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl, { html: true });
+            });
+        </script>
+        <!--LO QUE SIGUE ES OTRA BIBLIOTECA DE JAVASCRIPT-->
+        <script src="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.js"></script>
+        <!--LO QUE SIGUE ES LA CONFIGURACIÓN DE LA COMPARACIÓN DE IMÁGENES-->
+        <script>
+            const element = document.querySelector("#yuxtaposicion");
+            const options = {
+                controlColor: "#fff",
+                controlShadow: true,
+                addCircle: true,
+                addCircleBlur: true,
+                showLabels: true,
+                labelOptions: {
+                    before: "Ver Gibón de manos blancas (derecha)",
+                    after: "Ver Humano (izquierda)",
+                    onHover: false,
+                },
+            };
+            const viewer = new ImageCompare(element, options).mount();
+        </script>
+        <!--CON EL SIGUIENTE SCRIPT HAGO CANTAR AL GIBÓN-->
+        <script>
+            var canto = document.getElementById("elAudio");
+            var boton = document.getElementById("elSwitch");
+            boton.addEventListener("change", function () {
+                if (this.checked) {
+                    canto.play();
+                } else {
+                    canto.pause();
+                }
+            });
+        </script>
+    </body>
+</html>
